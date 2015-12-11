@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: Paul Belanger <pabelanger@redhat.com>
+Workflow+1: Paul Belanger <pabelanger@redhat.com>
+Submitted-by: Jenkins
+Submitted-at: Fri, 11 Dec 2015 17:58:57 +0000
+Reviewed-on: https://review.openstack.org/256600
+Project: openstack/ansible-role-jenkins-job-builder
+Branch: refs/heads/master
