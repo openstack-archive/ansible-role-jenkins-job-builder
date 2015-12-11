@@ -29,6 +29,20 @@ do not manage them.
 Role Variables
 --------------
 
+.. code-block:: yaml
+
+    # Name of the user to be used.
+    # Default: root
+    jenkins_job_builder_user_name: root
+
+    # Name of the group to be used.
+    # Default: root
+    jenkins_job_builder_user_group: root
+
+    # Path of home directory to be used.
+    # Default: /var/lib/jenkins_job_builder
+    jenkins_job_builder_user_home: /var/lib/jenkins_job_builder
+
 Dependencies
 ------------
 

@@ -25,3 +25,18 @@
 
   roles:
     - "{{ rolename }}"
+
+  post_tasks:
+    - name: Register jenkins_job_builder_user_home.
+      stat:
+        path: /var/lib/jenkins_job_builder
+      register: jenkins_job_builder_user_home_stat
+
+    - name: Assert jenkins_job_builder_user_home tests.
+      assert:
+        that:
+          - jenkins_job_builder_user_home_stat.stat.exists
+          - jenkins_job_builder_user_home_stat.stat.isdir
+          - jenkins_job_builder_user_home_stat.stat.pw_name == 'root'
+          - jenkins_job_builder_user_home_stat.stat.gr_name == 'root'
+          - jenkins_job_builder_user_home_stat.stat.mode == '0755'
