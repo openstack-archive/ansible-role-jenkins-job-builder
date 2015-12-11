@@ -27,6 +27,9 @@
     - "{{ rolename }}"
 
   post_tasks:
+    - name: Ensure jenkins-jobs is installed.
+      command: jenkins-jobs --version
+
     - name: Register jenkins_job_builder_user_home.
       stat:
         path: /var/lib/jenkins_job_builder
