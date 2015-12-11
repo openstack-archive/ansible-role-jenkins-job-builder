@@ -40,3 +40,20 @@
           - jenkins_job_builder_user_home_stat.stat.pw_name == 'root'
           - jenkins_job_builder_user_home_stat.stat.gr_name == 'root'
           - jenkins_job_builder_user_home_stat.stat.mode == '0755'
+
+    - name: Register /etc/jenkins_jobs.
+      stat:
+        path: /etc/jenkins_jobs
+      register: jenkins_jobs_stat
+
+    - name: Assert /etc/jenkins_jobs tests.
+      assert:
+        that:
+          - jenkins_jobs_stat.stat.exists
+          - jenkins_jobs_stat.stat.isdir
+          - jenkins_jobs_stat.stat.pw_name == 'root'
+          - jenkins_jobs_stat.stat.gr_name == 'root'
+          - jenkins_jobs_stat.stat.mode == '0755'
+
+    - name: Ensure jenkins_job_builder_template_jenkins_jobs_ini_dest is templated.
+      command: diff -Nua /etc/jenkins_jobs/jenkins_jobs.ini files/etc/jenkins_jobs/jenkins_jobs.ini
