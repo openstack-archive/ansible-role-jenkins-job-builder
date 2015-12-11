@@ -40,3 +40,32 @@
           - jenkins_job_builder_user_home_stat.stat.pw_name == 'root'
           - jenkins_job_builder_user_home_stat.stat.gr_name == 'root'
           - jenkins_job_builder_user_home_stat.stat.mode == '0755'
+
+    - name: Register /etc/jenkins_jobs.
+      stat:
+        path: /etc/jenkins_jobs
+      register: jenkins_jobs_stat
+
+    - name: Assert /etc/jenkins_jobs tests.
+      assert:
+        that:
+          - jenkins_jobs_stat.stat.exists
+          - jenkins_jobs_stat.stat.isdir
+          - jenkins_jobs_stat.stat.pw_name == 'root'
+          - jenkins_jobs_stat.stat.gr_name == 'root'
+          - jenkins_jobs_stat.stat.mode == '0755'
+
+    - name: Register expected jenkins_jobs.ini file.
+      stat:
+        path: files/etc/jenkins_jobs/jenkins_jobs.ini
+      delegate_to: 127.0.0.1
+      register: jenkins_jobs_ini_stat
+
+    - name: Assert jenkins_jobs_ini_stat tests.
+      assert:
+        that:
+          - jenkins_jobs_ini_stat.stat.exists
+          - jenkins_jobs_ini_stat.stat.isdir
+
+    - name: Ensure /etc/jenkins_jobs/jenkins_jobs.ini is templated.
+      command: diff -Nua /etc/jenkins_jobs/jenkins_jobs.ini files/etc/jenkins_jobs/jenkins_jobs.ini
