@@ -39,10 +39,6 @@ Role Variables
     # Default: root
     jenkins_job_builder_user_group: root
 
-    # Path of home directory to be used.
-    # Default: /var/lib/jenkins_job_builder
-    jenkins_job_builder_user_home: /var/lib/jenkins_job_builder
-
 Dependencies
 ------------
 
