@@ -28,3 +28,20 @@
     mode: "{{ jenkins_job_builder_template_jenkins_jobs_ini_mode }}"
     owner: "{{ jenkins_job_builder_template_jenkins_jobs_ini_owner }}"
     src: "{{ jenkins_job_builder_template_jenkins_jobs_ini_src }}"
+
+- name: Create jobs directory.
+  file:
+    dest: "{{ jenkins_job_builder_file_jobs_dest }}"
+    group: "{{ jenkins_job_builder_file_jobs_group }}"
+    mode: "{{ jenkins_job_builder_file_jobs_mode }}"
+    owner: "{{ jenkins_job_builder_file_jobs_owner }}"
+    state: directory
+
+- name: Rsyc jenkins jobs configuration.
+  sudo: no
+  synchronize:
+    delete: yes
+    dest: "{{ jenkins_job_builder_file_jobs_dest }}"
+    perms: yes
+    src: "{{ jenkins_job_builder_file_jobs_src }}"
+  notify: Reload jenkins-jobs

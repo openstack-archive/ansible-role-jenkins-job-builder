@@ -26,6 +26,12 @@ jenkins_job_builder_config_jenkins_password: ""
 jenkins_job_builder_config_jenkins_url: http://localhost:8008
 jenkins_job_builder_config_jenkins_query_plugins_info: False
 
+jenkins_job_builder_file_jobs_dest: /etc/jenkins_jobs/config
+jenkins_job_builder_file_jobs_group: "{{ ansible_ssh_user }}"
+jenkins_job_builder_file_jobs_mode: "0755"
+jenkins_job_builder_file_jobs_owner: "{{ ansible_ssh_user }}"
+jenkins_job_builder_file_jobs_src: etc/jenkins_jobs/config/
+
 jenkins_job_builder_template_jenkins_jobs_ini_dest: /etc/jenkins_jobs/jenkins_jobs.ini
 jenkins_job_builder_template_jenkins_jobs_ini_group: "{{ jenkins_job_builder_user_group }}"
 jenkins_job_builder_template_jenkins_jobs_ini_mode: "0440"
