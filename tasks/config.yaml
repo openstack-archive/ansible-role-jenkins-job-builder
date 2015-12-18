@@ -24,7 +24,7 @@
 - name: Template jenkins_jobs.ini file.
   template:
     dest: "{{ jenkins_job_builder_template_jenkins_jobs_ini_dest }}"
-    group: "{{ jenkins_job_builder_user_group }}"
+    group: "{{ jenkins_job_builder_template_jenkins_jobs_ini_group }}"
     mode: "{{ jenkins_job_builder_template_jenkins_jobs_ini_mode }}"
-    owner: "{{ jenkins_job_builder_user_name }}"
+    owner: "{{ jenkins_job_builder_template_jenkins_jobs_ini_owner }}"
     src: "{{ jenkins_job_builder_template_jenkins_jobs_ini_src }}"
