@@ -14,7 +14,7 @@
 ---
 # tasks/config.yaml
 jenkins_job_builder_user_name: root
-jenkins_job_builder_user_group: "{{ jenkins_job_builder_user_name }}"
+jenkins_job_builder_user_group: root
 
 jenkins_job_builder_config_job_builder_allow_duplicates: False
 jenkins_job_builder_config_job_builder_ignore_cache: True
@@ -27,7 +27,9 @@ jenkins_job_builder_config_jenkins_url: http://localhost:8008
 jenkins_job_builder_config_jenkins_query_plugins_info: False
 
 jenkins_job_builder_template_jenkins_jobs_ini_dest: /etc/jenkins_jobs/jenkins_jobs.ini
+jenkins_job_builder_template_jenkins_jobs_ini_group: "{{ jenkins_job_builder_user_group }}"
 jenkins_job_builder_template_jenkins_jobs_ini_mode: "0440"
+jenkins_job_builder_template_jenkins_jobs_ini_owner: "{{ jenkins_job_builder_user_name }}"
 jenkins_job_builder_template_jenkins_jobs_ini_src: etc/jenkins_jobs/jenkins_jobs.ini.j2
 
 # tasks/install.yaml
