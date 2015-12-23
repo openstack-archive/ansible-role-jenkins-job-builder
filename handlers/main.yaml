@@ -12,6 +12,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+- name: Check jenkins
+  delay: " {{ jenkins_job_builder_handler_check_delay }}"
+  shell: "curl --head --silent {{ jenkins_job_builder_config_jenkins_url }}"
+  register: result
+  retries: "{{ jenkins_job_builder_handler_check_retries }}"
+  until: result.stdout.find('200 OK') != -1
+
 - name: Reload jenkins-jobs
   shell: "jenkins-jobs --conf {{ jenkins_job_builder_template_jenkins_jobs_ini_dest }} update {{ jenkins_job_builder_file_jobs_dest }} --delete-old"
   sudo: yes
