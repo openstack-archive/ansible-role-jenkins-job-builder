@@ -44,4 +44,6 @@
     dest: "{{ jenkins_job_builder_file_jobs_dest }}"
     perms: yes
     src: "{{ jenkins_job_builder_file_jobs_src }}"
-  notify: Reload jenkins-jobs
+  notify:
+    - Check jenkins
+    - Reload jenkins-jobs

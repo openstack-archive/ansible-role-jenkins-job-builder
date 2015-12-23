@@ -47,3 +47,7 @@ jenkins_job_builder_install_method: git
 
 jenkins_job_builder_pip_name: jenkins-job-builder
 jenkins_job_builder_pip_version:
+
+# handlers/main.yaml
+jenkins_job_builder_handler_check_delay: 10
+jenkins_job_builder_handler_check_retries: 3
