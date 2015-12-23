@@ -37,11 +37,12 @@
     owner: "{{ jenkins_job_builder_file_jobs_owner }}"
     state: directory
 
-- name: Rsyc jenkins jobs configuration.
+- name: Rsync jenkins jobs configuration.
   sudo: no
   synchronize:
     delete: yes
     dest: "{{ jenkins_job_builder_file_jobs_dest }}"
     perms: yes
     src: "{{ jenkins_job_builder_file_jobs_src }}"
+  when: jenkins_job_builder_file_jobs_src != ""
   notify: Reload jenkins-jobs
