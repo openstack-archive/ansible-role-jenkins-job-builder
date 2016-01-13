@@ -20,6 +20,14 @@
   when: jenkins_job_builder_install_method == 'git' or jenkins_job_builder_install_method == 'pip'
 
 - name: Ensure build dependencies are installed.
-  yum: "pkg={{ item }} state=installed"
+  yum:
+    pkg: "{{ item }}"
+    state: installed
   with_items: jenkins_job_builder_build_depends
   when: jenkins_job_builder_install_method == 'git' or jenkins_job_builder_install_method == 'pip'
+
+- name: Install jenkins-job-builder using yum.
+  yum:
+    pkg: "{{ jenkins_job_builder_pkg_name }}"
+    state: installed
+  when: jenkins_job_builder_install_method == 'pkg'
