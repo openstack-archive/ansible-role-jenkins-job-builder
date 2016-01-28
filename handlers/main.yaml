@@ -21,5 +21,5 @@
 
 - name: Reload jenkins-jobs
   shell: "jenkins-jobs --conf {{ jenkins_job_builder_template_jenkins_jobs_ini_dest }} update {{ jenkins_job_builder_file_jobs_dest }} --delete-old"
-  sudo: yes
-  sudo_user: "{{ jenkins_job_builder_user_name }}"
+  become: yes
+  become_user: "{{ jenkins_job_builder_user_name }}"

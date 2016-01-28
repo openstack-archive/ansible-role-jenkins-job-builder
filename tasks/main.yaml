@@ -16,7 +16,6 @@
   include_vars: "{{ ansible_os_family }}.yaml"
 
 - include: install.yaml
-  sudo: yes
+  become: yes
 
 - include: config.yaml
-  sudo: yes

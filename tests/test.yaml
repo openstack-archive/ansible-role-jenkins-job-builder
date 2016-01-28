@@ -13,7 +13,7 @@
 # under the License.
 ---
 - hosts: localhost
-  sudo: yes
+  become: yes
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
   pre_tasks:

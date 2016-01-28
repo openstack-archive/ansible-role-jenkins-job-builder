@@ -13,6 +13,7 @@
 # under the License.
 ---
 - name: Create required directories.
+  become: yes
   file:
     group: "{{ jenkins_job_builder_user_group }}"
     owner: "{{ jenkins_job_builder_user_name }}"
@@ -22,6 +23,7 @@
     - /etc/jenkins_jobs
 
 - name: Template jenkins_jobs.ini file.
+  become: yes
   template:
     dest: "{{ jenkins_job_builder_template_jenkins_jobs_ini_dest }}"
     group: "{{ jenkins_job_builder_template_jenkins_jobs_ini_group }}"
@@ -30,6 +32,7 @@
     src: "{{ jenkins_job_builder_template_jenkins_jobs_ini_src }}"
 
 - name: Create jobs directory.
+  become: yes
   file:
     dest: "{{ jenkins_job_builder_file_jobs_dest }}"
     group: "{{ jenkins_job_builder_file_jobs_group }}"
@@ -38,7 +41,7 @@
     state: directory
 
 - name: Rsync jenkins jobs configuration.
-  sudo: no
+  become: no
   synchronize:
     delete: yes
     dest: "{{ jenkins_job_builder_file_jobs_dest }}"
