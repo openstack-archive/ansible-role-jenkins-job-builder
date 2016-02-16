@@ -12,16 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-# NOTE(pabelanger): This needs to be here for now, since we need python-pip.
-- name: Ensure EPEL is enabled.
-  yum:
-    pkg: epel-release
+- name: Install jenkins-job-builder from package.
+  package:
+    name: "{{ jenkins_job_builder_package_name }}"
     state: installed
-  when: jenkins_job_builder_install_method == 'git' or jenkins_job_builder_install_method == 'pip'
-
-- name: Ensure build dependencies are installed.
-  yum:
-    pkg: "{{ item }}"
-    state: installed
-  with_items: jenkins_job_builder_build_depends
-  when: jenkins_job_builder_install_method == 'git' or jenkins_job_builder_install_method == 'pip'
