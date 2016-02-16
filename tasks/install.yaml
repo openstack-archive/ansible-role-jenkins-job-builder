@@ -23,8 +23,4 @@
 - include: install/redhat.yaml
   when: ansible_os_family == 'RedHat'
 
-- include: install/git.yaml
-  when: jenkins_job_builder_install_method == 'git'
-
-- include: install/pip.yaml
-  when: jenkins_job_builder_install_method == 'pip'
+- include: "install/{{ jenkins_job_builder_install_method }}.yaml"
