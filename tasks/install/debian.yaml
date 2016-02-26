@@ -16,5 +16,5 @@
   apt:
     pkg: "{{ item }}"
     state: installed
-  with_items: jenkins_job_builder_build_depends
+  with_items: "{{ jenkins_job_builder_build_depends }}"
   when: jenkins_job_builder_install_method == 'git' or jenkins_job_builder_install_method == 'pip'
