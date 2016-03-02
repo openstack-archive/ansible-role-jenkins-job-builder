@@ -13,12 +13,12 @@
 # under the License.
 ---
 - hosts: test
-  become: yes
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
   pre_tasks:
     # Make sure OS does not have a stale package cache.
     - name: Update apt cache.
+      become: yes
       apt:
         update_cache: yes
       when: ansible_os_family == 'Debian'
@@ -56,6 +56,7 @@
           - jenkins_jobs_ini_stat.stat.mode == '0440'
 
     - name: Ensure jenkins_jobs.ini was templated.
+      becomes: true
       copy:
         dest: /etc/jenkins_jobs/jenkins_jobs.ini
         src: files/etc/jenkins_jobs/jenkins_jobs.ini
