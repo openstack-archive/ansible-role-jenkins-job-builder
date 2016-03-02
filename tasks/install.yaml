@@ -17,10 +17,19 @@
     jenkins_job_builder_build_depends: "{{ __jenkins_job_builder_build_depends | list }}"
   when: jenkins_job_builder_build_depends is not defined
 
-- include: install/debian.yaml
-  when: ansible_os_family == 'Debian'
+# NOTE(pabelanger): This needs to be here for now, since we need python-pip.
+- name: Ensure EPEL is enabled.
+  package:
+    name: epel-release
+    state: installed
+  when: (jenkins_job_builder_install_method == 'git' or jenkins_job_builder_install_method == 'pip') and
+        ansible_os_family == 'RedHat'
 
-- include: install/redhat.yaml
-  when: ansible_os_family == 'RedHat'
+- name: Ensure build dependencies are installed.
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ jenkins_job_builder_build_depends }}"
+  when: jenkins_job_builder_install_method == 'git' or jenkins_job_builder_install_method == 'pip'
 
 - include: "install/{{ jenkins_job_builder_install_method }}.yaml"
