@@ -1,5 +1,5 @@
-[all]
+[test]
 # NOTE(pabelanger): We should not be hard-coding jenkins here, since it limits
 # who can run this test.  However, ansible 2.0 has broken ansible_user and it
 # now requires to be setup, otherwise it will return nil.
-localhost ansible_user=jenkins
+test01 ansible_host=localhost ansible_user=jenkins
