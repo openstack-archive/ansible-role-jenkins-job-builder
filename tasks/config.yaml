@@ -47,6 +47,7 @@
     dest: "{{ jenkins_job_builder_file_jobs_dest }}"
     perms: yes
     src: "{{ jenkins_job_builder_file_jobs_src }}"
+    rsync_path: rsync
   when: jenkins_job_builder_file_jobs_src != ""
   notify:
     - Check jenkins
