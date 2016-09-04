@@ -20,6 +20,8 @@ auditing easier.
 Requirements
 ------------
 
+See `bindep.txt` for role dependencies.
+
 Packages
 ~~~~~~~~
 

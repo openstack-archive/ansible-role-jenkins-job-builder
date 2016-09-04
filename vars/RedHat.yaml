@@ -15,4 +15,3 @@
 __jenkins_job_builder_build_depends:
   - git
   - python-devel
-  - python-pip
