@@ -14,11 +14,7 @@
 ---
 - name: Install jenkins job builder using pip.
   pip:
+    extra_args: "{{ jenkins_job_builder_pip_extra_args|default(omit) }}"
     name: "{{ jenkins_job_builder_pip_name }}"
-  when: jenkins_job_builder_pip_version is none
-
-- name: Install jenkins job builder using pip.
-  pip:
-    name: "{{ jenkins_job_builder_pip_name }}"
-    version: "{{ jenkins_job_builder_pip_version }}"
-  when: jenkins_job_builder_pip_version is not none
+    version: "{{ jenkins_job_builder_pip_version|default(omit) }}"
+    virtualenv: "{{ jenkins_job_builder_pip_virtualenv|default(omit) }}"
