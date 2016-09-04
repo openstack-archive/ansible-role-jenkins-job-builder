@@ -20,4 +20,7 @@
 
 - name: Pip install jenkins_job_builder from local git repo.
   pip:
+    extra_args: "{{ jenkins_job_builder_pip_extra_args|default(omit) }}"
     name: "file://{{ jenkins_job_builder_git_dest }}"
+    version: "{{ jenkins_job_builder_pip_version|default(omit) }}"
+    virtualenv: "{{ jenkins_job_builder_pip_virtualenv|default(omit) }}"
