@@ -1,4 +1,4 @@
-# Copyright 2015 Red Hat, Inc.
+# Copyright 2015-2016 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,11 +13,12 @@
 # under the License.
 ---
 - name: Check jenkins
-  delay: " {{ jenkins_job_builder_handler_check_delay }}"
-  shell: "curl --head --silent {{ jenkins_job_builder_config_jenkins_url }}"
-  register: result
+  delay: "{{ jenkins_job_builder_handler_check_delay }}"
+  uri:
+    url: "{{ jenkins_job_builder_config_jenkins_url }}"
+    method: GET
+    status_code: 200
   retries: "{{ jenkins_job_builder_handler_check_retries }}"
-  until: result.stdout.find('200 OK') != -1
 
 - name: Reload jenkins-jobs
   shell: "jenkins-jobs --conf {{ jenkins_job_builder_template_jenkins_jobs_ini_dest }} update {{ jenkins_job_builder_file_jobs_dest }} --delete-old"
