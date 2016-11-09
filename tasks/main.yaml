@@ -16,6 +16,5 @@
   include_vars: "{{ ansible_os_family }}.yaml"
 
 - include: install.yaml
-  become: yes
 
 - include: config.yaml

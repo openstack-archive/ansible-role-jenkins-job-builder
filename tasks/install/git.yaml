@@ -13,12 +13,14 @@
 # under the License.
 ---
 - name: Git clone jenkins job builder.
+  become: yes
   git:
     dest: "{{ jenkins_job_builder_git_dest }}"
     repo: "{{ jenkins_job_builder_git_uri }}"
     version: "{{ jenkins_job_builder_git_version }}"
 
 - name: Pip install jenkins_job_builder from local git repo.
+  become: yes
   pip:
     extra_args: "{{ jenkins_job_builder_pip_extra_args|default(omit) }}"
     name: "file://{{ jenkins_job_builder_git_dest }}"

@@ -13,6 +13,7 @@
 # under the License.
 ---
 - name: Install jenkins job builder using pip.
+  become: yes
   pip:
     extra_args: "{{ jenkins_job_builder_pip_extra_args|default(omit) }}"
     name: "{{ jenkins_job_builder_pip_name }}"

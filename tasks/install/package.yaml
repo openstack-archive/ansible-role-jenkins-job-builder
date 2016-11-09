@@ -13,6 +13,7 @@
 # under the License.
 ---
 - name: Install jenkins-job-builder from package.
+  become: yes
   package:
     name: "{{ jenkins_job_builder_package_name }}"
     state: installed

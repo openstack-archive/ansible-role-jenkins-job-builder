@@ -18,6 +18,7 @@
   when: jenkins_job_builder_build_depends is not defined
 
 - name: Ensure build dependencies are installed.
+  become: yes
   package:
     name: "{{ item }}"
     state: installed
