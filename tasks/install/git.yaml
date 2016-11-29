@@ -26,4 +26,4 @@
     name: "file://{{ jenkins_job_builder_git_dest }}"
     version: "{{ jenkins_job_builder_pip_version|default(omit) }}"
     virtualenv: "{{ jenkins_job_builder_pip_virtualenv|default(omit) }}"
-     executable: "{{ jenkins_job_builder_pip_executable|default(omit) }}"
+    executable: "{{ jenkins_job_builder_pip_executable|default(omit) }}"
