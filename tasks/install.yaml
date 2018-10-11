@@ -25,4 +25,4 @@
   with_items: "{{ jenkins_job_builder_build_depends }}"
   when: jenkins_job_builder_install_method == 'git' or jenkins_job_builder_install_method == 'pip'
 
-- include: "install/{{ jenkins_job_builder_install_method }}.yaml"
+- include_tasks: "install/{{ jenkins_job_builder_install_method }}.yaml"
